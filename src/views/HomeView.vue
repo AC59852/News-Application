@@ -34,6 +34,9 @@ export default {
             // })
             console.log(response.json())
           })
+          .catch(error => {
+            console.log(error)
+          })
         })
       } else {
         this.getNews()
