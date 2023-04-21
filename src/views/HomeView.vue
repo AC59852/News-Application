@@ -27,13 +27,12 @@ export default {
       console.log('Cache keys:', keys)
 
       if(keys.includes('news') && document.cookie.includes('news')) {
-        console.log('test')
-
         caches.open('news').then(cache => {
           cache.match('news').then(response => {
-            response.json().then(data => {
-              this.store.addNews(data)
-            })
+            // response.json().then(data => {
+            //   this.store.addNews(data)
+            // })
+            console.log(response.json())
           })
         })
       } else {
