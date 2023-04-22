@@ -28,11 +28,10 @@ export default {
 
       if(keys.includes('news') && document.cookie.includes('news')) {
         caches.open('news').then(cache => {
-          cache.match('news').then((response) => {
-            // response.json().then(data => {
-            //   this.store.addNews(data)
-            // })
-            console.log(response.json())
+          cache.match('news')
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
           })
           .catch(error => {
             console.log(error)
