@@ -28,7 +28,7 @@ export default {
 
       if(keys.includes('news') && document.cookie.includes('news')) {
         caches.open('news').then(cache => {
-          cache.match('news').then(response => {
+          cache.match('news').then((response) => {
             // response.json().then(data => {
             //   this.store.addNews(data)
             // })
