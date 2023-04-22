@@ -25,7 +25,8 @@ export default {
   mounted() {
     // check localstorage for news
     if(localStorage.getItem('allNews') && document.cookie.includes('allNews')) {
-      console.log('news from localstorage')
+      console.log(localStorage.getItem('allNews'))
+      
       this.store.addNews(JSON.parse(localStorage.getItem('allNews')))
     } else {
       console.log('news from api')
