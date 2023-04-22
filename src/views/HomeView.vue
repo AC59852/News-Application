@@ -1,6 +1,6 @@
 <template>
   <main>
-    <article v-for="news in store.news" :key="news">
+    <article v-for="news in store.allNews" :key="news">
       <img v-if="news.urlToImage" :src="news.urlToImage" :alt="news.title">
       <div>
         <h2>{{ news.title }}</h2>
@@ -23,24 +23,14 @@ export default {
   },
 
   mounted() {
-    caches.keys().then(keys => {
-      console.log('Cache keys:', keys)
-
-      if(keys.includes('news') && document.cookie.includes('news')) {
-        caches.open('news').then(cache => {
-          cache.match('news')
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data)
-          })
-          .catch(error => {
-            console.log(error)
-          })
-        })
-      } else {
-        this.getNews()
-      }
-    })
+    // check localstorage for news
+    if(localStorage.getItem('allNews') && document.cookie.includes('allNews')) {
+      console.log('news from localstorage')
+      this.store.addNews(JSON.parse(localStorage.getItem('allNews')))
+    } else {
+      console.log('news from api')
+      this.getNews()
+    }
   },
 
   methods: {
